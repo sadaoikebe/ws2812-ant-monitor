@@ -1,5 +1,5 @@
 # WS2812B LED Strip Watt Monitor controller for RasPi
-2019/12/19 Sadao Ikebe
+by Sadao Ikebe
 
 This is for Python 3.x, not compatible with Python 2.x
 
@@ -44,13 +44,13 @@ First connected LED from Pi is a right center of ones digit, and going up,
 drawing an S letter like top, left-top, center, right-bottom, bottom, left-bottom
 then go to the tens letter.
 
-# USB port setup
+## USB port setup
 add this line to /etc/udev/rules.d/garmin-ant2.rules
 
     SUBSYSTEM=="usb", ATTRS{idVendor}=="0fcf", ATTRS{idProduct}=="1008", RUN+="/sbin/modprobe usbserial vendor=0x0fcf product=0x1008", MODE="0666", OWNER="pi", GROUP="root"
 product ID of your ANT+ stick might not be 1008, check with **lsusb** or **dmesg | tail**
 
-# Prerequisite
+## Prerequisite
 https://learn.adafruit.com/neopixels-on-raspberry-pi/python-usage
 
     sudo pip3 install rpi_ws281x adafruit-circuitpython-neopixel
