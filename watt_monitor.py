@@ -3,23 +3,27 @@ WS2812B LED Strip Watt Monitor for RasPi
 
 https://github.com/sadaoikebe/ws2812-ant-monitor
 
+usage: sudo python3 watt_monitor.py
+
 LED arrangement:
 
-    First connected LED from Pi is a right center of ones digit, and going up,
-    drawing an S letter like top, left-top, center, right-bottom, bottom, left-bottom
-    then go to the tens letter.
+    First connected LED from Pi is a right center of ones digit, then going up,
+    drawing an S letter from top, left-top, center, right-bottom, bottom, left-bottom
+    then wire to the tens digit.
 
-                    <------+ ^
-                  +          |
+                    <------- ^
+                  |          |
     +------+      | +------+ |
-    |      |      | |      | +
-    |      |      v | +--> |  <--+
+    |      |      | |      | |
+    |      |      v | ---> |  <---
     +------+        +------+
-    |      | <--+   |      | +
+    |      | <---   |      | |
     |      |      ^ |      | |
     +------+      | +------+ |
                   |          v
-                  + <------+
+                  | <------+
+
+    Please note your LED strip should withstand splash of your sweat.
 
 """
 
@@ -151,7 +155,7 @@ pixels = neopixel.NeoPixel(pixel_pin, LED_COUNT_ALL, brightness=0.2, auto_write=
 def show_led(pwr):
     global pixels
     onoff = generate_onoff(pwr)
-    rgb = ftpp_color2(pwr / 310)
+    rgb = ftpp_color2(pwr / FTP)
     for i in range(LED_COUNT_ALL):
         if onoff[i]:
             pixels[i] = (int(rgb[0] * 255), int(rgb[1] * 255), int(rgb[2] * 255))
